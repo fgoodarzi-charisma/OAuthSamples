@@ -3,9 +3,9 @@ using RestSharp;
 using RestSharp.Serializers.NewtonsoftJson;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ClientCredentialsFlow.Model;
+using Shared.Models;
 
-namespace ClientCredentialsFlow.Services;
+namespace Shared.Services;
 
 public static class WeatherService
 {

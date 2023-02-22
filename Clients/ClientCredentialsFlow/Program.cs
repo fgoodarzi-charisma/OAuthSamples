@@ -1,5 +1,5 @@
-﻿using ClientCredentialsFlow.Model;
-using ClientCredentialsFlow.Services;
+﻿using Shared.Models;
+using Shared.Services;
 using IdentityModel.Client;
 using Spectre.Console;
 using System.Security.Cryptography.X509Certificates;

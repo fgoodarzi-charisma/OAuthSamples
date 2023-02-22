@@ -3,7 +3,7 @@ using System.Text.Json;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace MyApp.Namespace
+namespace OidcCodeFlow.Namespace
 {
 
     public class CallApiModel : PageModel

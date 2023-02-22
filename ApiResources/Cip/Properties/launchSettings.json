@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Api2": {
+    "Cip": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

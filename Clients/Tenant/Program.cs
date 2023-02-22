@@ -1,10 +1,10 @@
 ﻿using IdentityModel.Client;
+using Shared.Models;
+using Shared.Services;
 using Spectre.Console;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using ClientCredentialsFlow.Model;
-using ClientCredentialsFlow.Services;
 
 var client = new HttpClient()
 {
@@ -39,13 +39,13 @@ Console.WriteLine("Access Token : ");
 Console.WriteLine(tokenResponse.AccessToken);
 Console.WriteLine("---------------------------");
 
-var weatherForecasts = await WeatherService.GetWeatherForecasts(tokenResponse);
+var weather = await WeatherService.GetWeathers(tokenResponse.TokenType, tokenResponse.AccessToken);
 
-DisplayForecasts(weatherForecasts);
+DisplayForecasts(weather);
 
 Console.ReadLine();
 
-static void DisplayForecasts(List<WeatherForecast> forecasts)
+static void DisplayForecasts(List<Weather> forecasts)
 {
     var table = new Table();
     table.AddColumn("City");
