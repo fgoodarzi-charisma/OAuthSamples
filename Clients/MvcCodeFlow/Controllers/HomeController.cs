@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
 using System.Text.Json;
@@ -20,7 +21,19 @@ public class HomeController : Controller
 
     public IActionResult Secure() => View();
 
-    public IActionResult Logout() => SignOut("oidc");
+    [AllowAnonymous]
+    public IActionResult Insecure() => View();
+
+    public async Task<IActionResult> Logout()
+    {
+        if (!User.Identity.IsAuthenticated)
+        {
+            return Redirect("/");
+        }
+
+        await HttpContext.SignOutAsync();
+        return RedirectToAction(nameof(Index));
+    }
 
     public async Task<IActionResult> CallApi()
     {
