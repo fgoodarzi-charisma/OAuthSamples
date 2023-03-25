@@ -26,11 +26,6 @@ public class HomeController : Controller
 
     public async Task<IActionResult> Logout()
     {
-        if (!User.Identity.IsAuthenticated)
-        {
-            return Redirect("/");
-        }
-
         await HttpContext.SignOutAsync();
         return RedirectToAction(nameof(Index));
     }
