@@ -1,8 +1,6 @@
 ﻿using IdentityModel.Client;
 using RestSharp;
 using RestSharp.Serializers.NewtonsoftJson;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Shared.Models;
 
 namespace Shared.Services;
