@@ -3,10 +3,11 @@ using IdentityModel.Client;
 using Shared;
 using System;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using TokenExchange;
 
-
+Console.OutputEncoding = Encoding.UTF8;
 Console.Title = "Console Token Exchange Client";
 DiscoveryCache cache = new(SampleConstants.StsBaseUrl);
 
@@ -29,6 +30,7 @@ response = await ExchangeToken(initialToken, "delegation");
 
 "\n\nDelegation style:".ConsoleYellow();
 response.Show();
+Console.ReadLine();
 
 async Task<TokenResponse> RequestTokenAsync(string clientId, string secret, string scope)
 {

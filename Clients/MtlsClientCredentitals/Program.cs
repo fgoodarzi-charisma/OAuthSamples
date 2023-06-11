@@ -4,6 +4,9 @@ using MtlsClientCredentitals.Services;
 using Shared;
 using Spectre.Console;
 using System.Security.Cryptography.X509Certificates;
+using System.Text;
+
+Console.OutputEncoding = Encoding.UTF8;
 
 // discover endpoints from metadata
 var handler = new SocketsHttpHandler();

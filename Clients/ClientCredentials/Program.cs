@@ -7,6 +7,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
+
+Console.OutputEncoding = Encoding.UTF8;
 
 var client = new HttpClient()
 {
