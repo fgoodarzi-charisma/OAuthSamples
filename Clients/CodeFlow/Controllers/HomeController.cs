@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Shared;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -32,7 +33,7 @@ public class HomeController : Controller
 
     public async Task<IActionResult> CallApi()
     {
-        var client = _httpClientFactory.CreateClient("smpl__weather_api");
+        var client = _httpClientFactory.CreateClient(SampleConstants.Api_WeatherId);
         var response = await client.GetStringAsync("weather");
 
         var json = JsonDocument.Parse(response);

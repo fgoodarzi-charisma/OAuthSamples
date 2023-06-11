@@ -1,3 +1,4 @@
+using IdentityModel;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -36,16 +37,16 @@ public sealed class Startup
                 options.Authority = SampleConstants.StsBaseUrl;
                 options.RequireHttpsMetadata = false;
 
-                options.ClientId = "web";
-                options.ClientSecret = "secret";
+                options.ClientId = SampleConstants.Client_CodeId;
+                options.ClientSecret = SampleConstants.Client_CodeSecret;
 
-                options.ResponseType = "code";
+                options.ResponseType = OidcConstants.ResponseTypes.Code;
                 options.UsePkce = true;
 
                 options.Scope.Clear();
-                options.Scope.Add("openid");
-                options.Scope.Add("profile");
-                options.Scope.Add("weather");
+                options.Scope.Add(OidcConstants.StandardScopes.OpenId);
+                options.Scope.Add(OidcConstants.StandardScopes.Profile);
+                options.Scope.Add(SampleConstants.WeatherScope);
 
                 options.GetClaimsFromUserInfoEndpoint = true;
                 options.SaveTokens = true;
@@ -55,7 +56,7 @@ public sealed class Startup
         services.AddAccessTokenManagement();
 
         // add HTTP client to call protected API
-        services.AddUserAccessTokenHttpClient("smpl__weather_api", configureClient: client =>
+        services.AddUserAccessTokenHttpClient(SampleConstants.Api_WeatherId, configureClient: client =>
         {
             client.BaseAddress = new Uri(SampleConstants.WeatheApiBaseUrl);
         });
