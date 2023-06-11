@@ -2,12 +2,13 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Shared;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 
 namespace MvcCodeFlow;
 
-public class Startup
+public sealed class Startup
 {
     public void ConfigureServices(IServiceCollection services)
     {
@@ -27,19 +28,17 @@ public class Startup
 
                 options.Events.OnSigningOut = async e =>
                 {
-                    // automatically revoke refresh token at signout time
                     await e.HttpContext.RevokeUserRefreshTokenAsync();
                 };
             })
             .AddOpenIdConnect("oidc", options =>
             {
-                options.Authority = Urls.IdentityServer;
+                options.Authority = SampleConstants.StsBaseUrl;
                 options.RequireHttpsMetadata = false;
 
                 options.ClientId = "web";
                 options.ClientSecret = "secret";
 
-                // code flow + PKCE (PKCE is turned on by default)
                 options.ResponseType = "code";
                 options.UsePkce = true;
 
@@ -48,10 +47,6 @@ public class Startup
                 options.Scope.Add("profile");
                 options.Scope.Add("weather");
 
-                // not mapped by default
-                options.ClaimActions.MapJsonKey("website", "website");
-
-                // keeps id_token smaller
                 options.GetClaimsFromUserInfoEndpoint = true;
                 options.SaveTokens = true;
             });
@@ -60,9 +55,9 @@ public class Startup
         services.AddAccessTokenManagement();
 
         // add HTTP client to call protected API
-        services.AddUserAccessTokenHttpClient("wso2", configureClient: client =>
+        services.AddUserAccessTokenHttpClient("smpl__weather_api", configureClient: client =>
         {
-            client.BaseAddress = new Uri(Urls.Wso2);
+            client.BaseAddress = new Uri(SampleConstants.WeatheApiBaseUrl);
         });
     }
 

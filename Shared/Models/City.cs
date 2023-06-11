@@ -1,4 +1,4 @@
-﻿namespace Shared.Models;
+﻿namespace MtlsClientCredentitals.Models;
 
 public class City
 {

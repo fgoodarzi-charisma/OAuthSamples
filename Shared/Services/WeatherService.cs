@@ -1,15 +1,14 @@
-﻿using RestSharp;
-using RestSharp.Serializers.NewtonsoftJson;
-using Shared.Models;
+﻿using MtlsClientCredentitals.Models;
+using RestSharp;
+using Shared;
 
-namespace Shared.Services;
+namespace MtlsClientCredentitals.Services;
 
 public static class WeatherService
 {
     public static async Task<List<Weather>> GetWeathers(string scheme, string token)
     {
-        var client = new RestClient($"https://localhost:5005/");
-        client.UseNewtonsoftJson();
+        var client = new RestClient(SampleConstants.WeatheApiBaseUrl);
         var request = new RestRequest("/weather", Method.Get);
         request.AddHeader("Authorization", $"{scheme} {token}");
         var response = await client.ExecuteAsync<List<Weather>>(request);

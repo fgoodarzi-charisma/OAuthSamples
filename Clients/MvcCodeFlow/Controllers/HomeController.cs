@@ -32,7 +32,7 @@ public class HomeController : Controller
 
     public async Task<IActionResult> CallApi()
     {
-        var client = _httpClientFactory.CreateClient("wso2");
+        var client = _httpClientFactory.CreateClient("smpl__weather_api");
         var response = await client.GetStringAsync("weather");
 
         var json = JsonDocument.Parse(response);

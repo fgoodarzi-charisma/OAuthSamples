@@ -1,6 +1,6 @@
 namespace MtlsClientCredentitals.Models;
 
-public class Weather
+public class WeatherForecast
 {
     public DateTime Date { get; set; }
     public string City { get; set; } = default!;
