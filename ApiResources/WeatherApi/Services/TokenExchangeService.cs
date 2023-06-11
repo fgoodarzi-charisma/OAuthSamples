@@ -16,12 +16,12 @@ public static class TokenExchangeService
         var tokenRequest = new TokenExchangeTokenRequest
         {
             Address = disco.TokenEndpoint,
-            ClientId = "smpl__weather_client",
-            ClientSecret = "smpl__weather_client_secret",
+            ClientId = SampleConstants.Client_WeatherClientId,
+            ClientSecret = SampleConstants.Client_WeatherClientSecret,
 
             SubjectToken = token,
             SubjectTokenType = TokenTypeIdentifiers.AccessToken,
-            Scope = "smpl__geography",
+            Scope = SampleConstants.GeographyScope,
         };
 
         var client = new HttpClient();
@@ -38,12 +38,12 @@ public static class TokenExchangeService
         var tokenRequest = new TokenExchangeTokenRequest
         {
             Address = disco.TokenEndpoint,
-            ClientId = "smpl__weather_client",
-            ClientSecret = "smpl__weather_client_secret",
+            ClientId = SampleConstants.Client_WeatherClientId,
+            ClientSecret = SampleConstants.Client_WeatherClientSecret,
 
             SubjectToken = subjectToken,
             SubjectTokenType = TokenTypeIdentifiers.AccessToken,
-            Scope = "smpl__geography",
+            Scope = SampleConstants.GeographyScope,
 
             ActorToken = actorToken,
             ActorTokenType = TokenTypeIdentifiers.AccessToken,

@@ -23,9 +23,9 @@ if (disco.IsError)
 var tokenRequest = new ClientCredentialsTokenRequest
 {
     Address = disco.TokenEndpoint,
-    ClientId = "smpl__client_credentials",
-    ClientSecret = "smpl__client_credentials_secret",
-    Scope = "smpl__weather",
+    ClientId = SampleConstants.Client_ClientCredentialsId,
+    ClientSecret = SampleConstants.Client_ClientCredentialsSecret,
+    Scope = SampleConstants.WeatherScope,
 };
 
 var tokenResponse = await client.RequestClientCredentialsTokenAsync(tokenRequest);

@@ -17,7 +17,7 @@ public static class ClientCredentialsHelper
             Address = disco.TokenEndpoint,
             ClientId = username,
             ClientSecret = password,
-            Scope = "smpl__geography",
+            Scope = SampleConstants.GeographyScope,
         };
 
         var client = new HttpClient();

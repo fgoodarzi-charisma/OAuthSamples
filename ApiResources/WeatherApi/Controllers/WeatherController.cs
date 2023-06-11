@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MtlsClientCredentitals.Models;
 using MtlsClientCredentitals.Services;
+using Shared;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,7 +16,8 @@ public sealed class WeatherController : ControllerBase
     [HttpGet]
     public async Task<IEnumerable<MtlsClientCredentitals.Models.Weather>> Get()
     {
-        var actorToken = await ClientCredentialsHelper.GetToken("smpl__weather_client", "smpl__weather_client_secret");
+        var actorToken = await ClientCredentialsHelper.GetToken(SampleConstants.Client_WeatherClientId,
+            SampleConstants.Client_WeatherClientSecret);
         var subjectToken = ReadTokenFromHeader();
         //var exchangedAccessToken = await TokenExchangeService.ExchangeForDelegation(subjectToken, actorToken.AccessToken);
 

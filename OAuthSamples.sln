@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MtlsClientCredentitals", "C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientCredentials", "Clients\ClientCredentials\ClientCredentials.csproj", "{C17E5E02-CAC2-4818-BB58-A65DC79707F8}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TokenExchange", "Clients\TokenExchange\TokenExchange.csproj", "{20B4655E-CE05-442A-8E2C-399E4785B4C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{C17E5E02-CAC2-4818-BB58-A65DC79707F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C17E5E02-CAC2-4818-BB58-A65DC79707F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C17E5E02-CAC2-4818-BB58-A65DC79707F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20B4655E-CE05-442A-8E2C-399E4785B4C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20B4655E-CE05-442A-8E2C-399E4785B4C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20B4655E-CE05-442A-8E2C-399E4785B4C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20B4655E-CE05-442A-8E2C-399E4785B4C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +65,7 @@ Global
 		{ECFF6F3E-D91C-4BE9-8011-D723B9402110} = {E711BCAA-F0AB-431D-A636-78BEFFECFB86}
 		{715B635C-F3AC-472E-8CAD-C3A10A8E57F1} = {593F3B20-ED8B-4F87-9B16-561F6E87A2AC}
 		{C17E5E02-CAC2-4818-BB58-A65DC79707F8} = {593F3B20-ED8B-4F87-9B16-561F6E87A2AC}
+		{20B4655E-CE05-442A-8E2C-399E4785B4C9} = {593F3B20-ED8B-4F87-9B16-561F6E87A2AC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {560E1C60-2DB6-4419-B4CC-BF3E3B6920D7}
