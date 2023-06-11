@@ -3,7 +3,7 @@ const IDENTITY_CONFIG = {
     client_id: process.env.NEXT_PUBLIC_IDENTITY_CLIENT_ID,
     redirect_uri: process.env.NEXT_PUBLIC_CALLBACK_URL,
     response_type: "code", 
-    scope: "openid profile weather",
+    scope: "openid profile smpl__weather",
     automaticSilentRenew: true,
     silent_redirect_uri: process.env.NEXT_PUBLIC_SILENT_CALLBACK_URL,
 }
