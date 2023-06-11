@@ -26,8 +26,9 @@ public sealed class Startup
             .AddJwtBearer("Bearer", options =>
             {
                 options.Authority = SampleConstants.StsBaseUrl;
-                options.Audience = "smpl__weather_api";
+                options.Audience = SampleConstants.Api_WeatherId;
             });
+
         services.AddAuthorization();
     }
 

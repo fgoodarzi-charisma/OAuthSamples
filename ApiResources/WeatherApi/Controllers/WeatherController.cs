@@ -19,8 +19,8 @@ public sealed class WeatherController : ControllerBase
         var actorToken = await ClientCredentialsHelper.GetToken(SampleConstants.Client_WeatherClientId,
             SampleConstants.Client_WeatherClientSecret);
         var subjectToken = ReadTokenFromHeader();
-        //var exchangedAccessToken = await TokenExchangeService.ExchangeForDelegation(subjectToken, actorToken.AccessToken);
 
+        //var exchangedAccessToken = await TokenExchangeService.ExchangeForDelegation(subjectToken, actorToken.AccessToken);
         var exchangedAccessToken = await TokenExchangeService.ExchangeForImpersonation(subjectToken);
 
         var simpleWeathers = SimpleWeather.Fake;
