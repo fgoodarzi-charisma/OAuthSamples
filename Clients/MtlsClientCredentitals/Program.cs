@@ -3,32 +3,46 @@ using MtlsClientCredentitals.Models;
 using MtlsClientCredentitals.Services;
 using Shared;
 using Spectre.Console;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 Console.OutputEncoding = Encoding.UTF8;
 
-// discover endpoints from metadata
 var handler = new SocketsHttpHandler();
-var path = $"{Environment.CurrentDirectory}/cert-11.pfx";
-var cert = new X509Certificate2(path, "fF@123456");
+var path = $"{Environment.CurrentDirectory}/certificate.pfx";
+var cert = new X509Certificate2(path, "smpl__client_credentials");
 handler.SslOptions.ClientCertificates = new X509CertificateCollection { cert };
 
-var client = new HttpClient(handler);
+var client = new HttpClient()
+{
+    BaseAddress = new Uri(SampleConstants.StsBaseUrl),
+};
 
-var disco = await client.GetDiscoveryDocumentAsync(SampleConstants.StsBaseUrl);
+var disco = await client.GetDiscoveryDocumentAsync();
 if (disco.IsError)
 {
     Console.WriteLine(disco.Error);
     return;
 }
 
-var tokenResponse = await client.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
+if (disco.MtlsEndpointAliases is null)
+{
+    Console.WriteLine("Identity provider does not support MTLS");
+    return;
+}
+
+var tokenRequest = new ClientCredentialsTokenRequest
 {
     Address = disco.MtlsEndpointAliases.TokenEndpoint,
-    ClientId = "client-credentials",
-    Scope = "weather",
-});
+    ClientId = SampleConstants.Client_ClientCredentialsId,
+    Scope = SampleConstants.WeatherScope,
+};
+
+var tokenResponse = await client.RequestClientCredentialsTokenAsync(tokenRequest);
 
 if (tokenResponse.IsError)
 {
@@ -37,14 +51,23 @@ if (tokenResponse.IsError)
     return;
 }
 
-var weatherForecasts = await WeatherService.GetWeatherForecasts(tokenResponse);
+Console.WriteLine("Access Token : ");
+Console.WriteLine(tokenResponse.AccessToken);
+Console.WriteLine("---------------------------");
 
-DisplayForecasts(weatherForecasts);
+var weather = await WeatherService.GetWeathers(tokenResponse.TokenType, tokenResponse.AccessToken);
+
+DisplayForecasts(weather);
 
 Console.ReadLine();
 
-static void DisplayForecasts(List<WeatherForecast> forecasts)
+static void DisplayForecasts(List<Weather> forecasts)
 {
+    if (forecasts is null || !forecasts.Any())
+    {
+        return;
+    }
+
     var table = new Table();
     table.AddColumn("City");
     table.AddColumn("Temperature");
