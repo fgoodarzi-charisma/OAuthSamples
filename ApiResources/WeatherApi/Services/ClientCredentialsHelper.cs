@@ -24,4 +24,21 @@ public static class ClientCredentialsHelper
 
         return await client.RequestClientCredentialsTokenAsync(actorRequest);
     }
+
+    public static async Task<TokenIntrospectionResponse> IntrospectToken(string token)
+    {
+        var cache = new DiscoveryCache(SampleConstants.StsBaseUrl);
+        var disco = await cache.GetAsync();
+        var client = new HttpClient();
+
+        var response = await client.IntrospectTokenAsync(new TokenIntrospectionRequest
+        {
+            Address = disco.IntrospectionEndpoint,
+            ClientId = SampleConstants.Api_WeatherId,
+            ClientSecret = SampleConstants.Api_WeatherSecret,
+            Token = token,
+        });
+
+        return response;
+    }
 }

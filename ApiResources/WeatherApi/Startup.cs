@@ -29,6 +29,14 @@ public sealed class Startup
                 options.Audience = SampleConstants.Api_WeatherId;
             });
 
+        services.AddAuthentication("token")
+            .AddOAuth2Introspection("token", options =>
+            {
+                options.Authority = SampleConstants.StsBaseUrl;
+                options.ClientId = SampleConstants.Api_WeatherId;
+                options.ClientSecret = SampleConstants.Api_WeatherSecret;
+            });
+
         services.AddAuthorization();
     }
 

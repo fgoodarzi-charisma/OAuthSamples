@@ -26,8 +26,17 @@ public sealed class Startup
             .AddJwtBearer("Bearer", options =>
             {
                 options.Authority = SampleConstants.StsBaseUrl;
-                options.Audience = "smpl__geography_api";
+                options.Audience = SampleConstants.Api_GeographyId;
             });
+
+        services.AddAuthentication("token")
+            .AddOAuth2Introspection("token", options =>
+            {
+                options.Authority = SampleConstants.StsBaseUrl;
+                options.ClientId = SampleConstants.Api_GeographyId;
+                options.ClientSecret = SampleConstants.Api_GeographySecret;
+            });
+
         services.AddAuthorization();
     }
 
