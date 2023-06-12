@@ -17,7 +17,7 @@ var path = $"{Environment.CurrentDirectory}/certificate.pfx";
 var cert = new X509Certificate2(path, "smpl__client_credentials");
 handler.SslOptions.ClientCertificates = new X509CertificateCollection { cert };
 
-var client = new HttpClient()
+var client = new HttpClient(handler)
 {
     BaseAddress = new Uri(SampleConstants.StsBaseUrl),
 };
