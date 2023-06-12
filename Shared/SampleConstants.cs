@@ -2,7 +2,7 @@
 
 public static class SampleConstants
 {
-    public const string StsBaseUrl = "https://localhost:5001";
+    public const string StsBaseUrl = "https://demo-auth.charisma.tech";
     public const string WeatheApiBaseUrl = "https://localhost:7001";
     public const string GeographyApiBaseUrl = "https://localhost:7002";
     public const string MvcClientBaseUrl = "https://localhost:7003";
